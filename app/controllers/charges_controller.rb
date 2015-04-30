@@ -12,6 +12,8 @@ class ChargesController < ApplicationController
           :source => token
           })
 
+    redirect_to :back
+
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to charges_path
