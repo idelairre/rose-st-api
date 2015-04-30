@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+gem 'rails', '4.2.0'
+gem 'rails-api'
+gem 'spring', :group => :development
+gem 'pg'
+gem 'bcrypt'
+gem 'rb-readline'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'newrelic_rpm'
+gem 'rack-cors', require: 'rack/cors'
+gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+gem 'nokogiri'
