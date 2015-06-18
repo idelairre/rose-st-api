@@ -26,7 +26,6 @@ class ChargesController < ApplicationController
 
   def subscription
     customer = Stripe::Customer.create(
-      :description => "Customer for test@example.com",
       :source => params[:token]
     )
     customer.subscriptions.create(:plan => params[:subscription_id])
@@ -34,10 +33,9 @@ class ChargesController < ApplicationController
 
   def custom_subscription
     customer = Stripe::Customer.create(
-      :description => "Customer for test@example.com",
       :source => params[:token]
     )
-    plan = Stripe::Plan.create( :amount => params[:amount], :interval => 'month', :name => "Monthly Donation for #{customer.id}", :currency => 'usd', :id => Stripe::Plan.all.data.length + 1 )
+    plan = Stripe::Plan.create( :amount => params[:amount], :interval => 'month', :name => "Monthly Donation Plan for #{customer.id}", :currency => 'usd', :id => Stripe::Plan.all.data.length + 1 )
     customer.subscriptions.create(:plan => plan[:id])
   end
 
