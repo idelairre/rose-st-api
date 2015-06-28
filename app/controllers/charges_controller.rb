@@ -9,20 +9,12 @@ class ChargesController < ApplicationController
                             :amount => params[:amount],
                             :currency => "usd",
                             :source => token
-    })
+                                })
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to charges_path
   end
-
-  # def customer
-  #   token = params[:token]
-
-  #   Stripe::Customer.create(
-  #     	:source => token
-  #   )
-  # end
 
   def subscription
     customer = Stripe::Customer.create(

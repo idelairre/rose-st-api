@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by(params[:title])
     render json: @post
   end
 
@@ -18,13 +18,13 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = Post.find_by(params[:title])
     @post.update(post_params)
     render json: @post
   end
 
   def destroy
-    @post = Post.find(params[:id]).destroy
+    @post = Post.find_by(params[:title]).destroy
   end
 
   private
