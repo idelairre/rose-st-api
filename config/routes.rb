@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     post '/subscription', to: 'charges#subscription', on: :collection
     post '/custom_subscription', to: 'charges#custom_subscription', on: :collection
   end
-  resources :posts
+  resources :posts, param: :title_url, defaults: { format: :json }
   resources :users, defaults: { format: :json } do
     get '/login', to: 'users#login', on: :collection
     post '/login', to: 'users#login', on: :collection
