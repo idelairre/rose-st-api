@@ -15,6 +15,8 @@ gem 'nokogiri'
 gem 'slugify'
 gem 'mailgun_rails'
 gem 'thin'
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   gem 'database_cleaner'
   gem 'faker'
