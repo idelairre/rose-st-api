@@ -1,5 +1,5 @@
 class ExceptionNotifier < ApplicationMailer
-  default from: 'logger@rosestreetcc.com'
+  default from: 'logger@rosestreet.org'
 
   def exception_notification(error, data)
     @error = error

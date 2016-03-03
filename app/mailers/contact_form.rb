@@ -1,5 +1,5 @@
 class ContactForm < ApplicationMailer
-  default from: 'contact@rosestreetcc.com'
+  default from: 'contact@rosestreet.org'
 
   def contact(data)
     @name = data[:name]
