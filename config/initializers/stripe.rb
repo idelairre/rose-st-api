@@ -1,6 +1,14 @@
+module Serialization
+  extend ActiveModel::Naming
+  include ActiveModel::Serialization
+end
+
+Stripe::StripeObject.class_eval do
+  include Serialization
+end
+
 Rails.configuration.stripe = {
-  # :publishable_key => ENV['PUBLISHABLE_KEY'],
-  :secret_key      => ENV['SECRET_KEY']
+  :secret_key => ENV['SECRET_KEY']
 }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]

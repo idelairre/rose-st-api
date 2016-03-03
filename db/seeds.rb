@@ -5,6 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-Post.create(title: "yaaaaah", body: "fuck you")
-User.create(email: "jesus@jesus.jesus", password: "jesus")

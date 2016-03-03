@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
-  resources :charges do
-    post '/subscription', to: 'charges#subscription', on: :collection
-    post '/custom_subscription', to: 'charges#custom_subscription', on: :collection
+  mount_devise_token_auth_for 'User', at: 'auth'
+  resources :donations, only: [:create] do
+    collection do
+      post '/subscription', to: 'donations#subscription'
+      post '/custom_subscription', to: 'donations#custom_subscription'
+      get '/charges', to: 'donations#list_charges'
+      get '/customers', to: 'donations#list_customers'
+      get '/customers/:customer_id/subscriptions/', to: 'donations#list_customer_subscriptions'
+      get '/subscriptions/', to: 'donations#list_active_subscriptions'
+      get '/transactions/', to: 'donations#list_transactions'
+    end
   end
-  resources :posts, param: :title_url, defaults: { format: :json }
-  resources :users, defaults: { format: :json } do
-    get '/login', to: 'users#login', on: :collection
-    post '/login', to: 'users#login', on: :collection
-    post '/logout', to: 'users#logout', on: :collection
-  end
+  resources :messages, only: [:index, :create, :destroy], defaults: { format: :json }
+  resources :posts, only: [:index, :update, :destroy, :create], defaults: { format: :json }
+  get 'posts/:title_url', to: 'posts#show'
+  resources :users, defaults: { format: :json }
+
 end

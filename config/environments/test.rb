@@ -37,6 +37,19 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  config.action_mailer.default_url_options = { host: 'localhost' }
+
+  config.mailer_sender = 'mailer@rosestreet.org'
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  ActionMailer::Base.delivery_method = :smtp
+
+  ActionMailer::Base.smtp_settings = {
+    port: 587,
+    address: 'smtp.mailgun.org',
+    user_name: 'postmaster@rosestreet.org',
+    password: 'whatever',
+    domain: 'https://rosestreet.org',
+    authentication: :plain
+  }
 end
