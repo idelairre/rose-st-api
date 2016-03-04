@@ -19,6 +19,7 @@ RSpec.describe DonationsController, type: :controller do
       end
     end
   end
+
   describe 'private stripe methods', live: true do
     before do
       # TODO: find a way to hide this
@@ -31,15 +32,18 @@ RSpec.describe DonationsController, type: :controller do
 
       @resource_auth_headers = @resource.create_new_auth_token
     end
+
     describe 'GET #list_active_subscriptions' do
       it 'responds with a 401 error to unauthorized requests' do
         get :list_active_subscriptions
         expect(response).to have_http_status(401)
       end
+
       it 'responds successfully to authenticated requests' do
         get :list_active_subscriptions, @resource_auth_headers
         expect(response).to have_http_status(:success)
       end
+
       it 'lists all customers active subscriptions' do
         get :list_active_subscriptions, @resource_auth_headers
         expect(response).to have_http_status(:success)
@@ -50,15 +54,18 @@ RSpec.describe DonationsController, type: :controller do
         expect(response.body).to include('customer')
       end
     end
+
     describe 'GET #list_transactions' do
       it 'responds with a 401 error to unauthorized requests' do
         get :list_transactions
         expect(response).to have_http_status(401)
       end
+
       it 'responds successfully to authenticated requests' do
         get :list_transactions, @resource_auth_headers
         expect(response).to have_http_status(:success)
       end
+
       it 'lists all customers active subscriptions' do
         get :list_transactions, @resource_auth_headers
         expect(response).to have_http_status(:success)
@@ -73,15 +80,18 @@ RSpec.describe DonationsController, type: :controller do
         expect(response.body).to include('type')
       end
     end
+
     describe 'GET #list_customers' do
       it 'responds with a 401 error to unauthorized requests' do
         get :list_customers
         expect(response).to have_http_status(401)
       end
+
       it 'responds successfully to authenticated requests' do
         get :list_customers, @resource_auth_headers
         expect(response).to have_http_status(:success)
       end
+
       it 'lists all customers active subscriptions' do
         get :list_customers, @resource_auth_headers
         expect(response).to have_http_status(:success)

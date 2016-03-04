@@ -11,7 +11,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
-
+  config.include Devise::TestHelpers, type: :routing
   config.include Devise::TestHelpers, type: :controller
 
   if config.filter_manager.inclusions.rules.include?(:live)
