@@ -3,6 +3,10 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :posts
 
+  def email
+    object.uid
+  end
+
   def confirmed
     if !object.confirmed_at.nil?
       true
