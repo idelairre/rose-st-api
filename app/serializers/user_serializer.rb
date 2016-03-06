@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :nickname, :email, :admin, :confirmed, :sign_in_count, :created_at, :updated_at
+  attributes :id, :name, :nickname, :email, :admin, :confirmed, :sign_in_count, :last_sign_in_at, :created_at, :updated_at
 
   has_many :posts
 

@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     end
   end
   resources :messages, only: [:index, :create, :destroy], defaults: { format: :json }
-  resources :posts, only: [:index, :update, :destroy, :create], defaults: { format: :json }
-  get 'posts/:title_url', to: 'posts#show'
-  resources :users, defaults: { format: :json }
-
+  resources :posts, only: [:index, :update, :destroy, :create], defaults: { format: :json } do
+    get '/:title_url', to: 'posts#show', on: :collection
+  end
+  resources :users, only: [:index, :update, :destroy, :create], defaults: { format: :json } do
+    get '/:uid', to: 'users#show', on: :collection
+  end
 end

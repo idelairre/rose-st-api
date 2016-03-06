@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    render json: @user
+    @user = User.find_by(email: params[:uid])
+    render json: @user, serializer: UserSerializer
   end
 
   def create
@@ -38,6 +38,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:id, :email, :nickname, password, :password_confirmation, :admin)
+    params.require(:user).permit(:id, :email, :uid, :nickname, password, :password_confirmation, :admin)
   end
 end
