@@ -29,31 +29,31 @@ RSpec.describe 'Auth/user routes', type: :request do
     end
   end
 
-  describe 'GET /auth/password/new' do
-    before do
-      mail = ActionMailer::Base.deliveries.last.to_s
-      @token = /(?<=Token: )(.*)(?=<\/p>)/.match(mail)
-      @params = {
-        config: 'default',
-        redirect_url: @redirect_url,
-        reset_password_token: @token
-      }
-      get "/auth/password", @params
-      raw_qs = response.location.split('?')[1]
-      @qs = Rack::Utils.parse_nested_query(raw_qs)
-
-      @client_id = @qs['client_id']
-      @expiry = @qs['expiry']
-      @reset_password = @qs['reset_password']
-      @token = @qs['token']
-      @uid = @qs['uid']
-    end
-
-    it 'redirects to the given url and adds url params' do
-    end
-
-    it 'provides a valid token for a temporary session' do
-      # expect { get '/auth/password/edit' }.to_not raise_error
-    end
-  end
+  # describe 'GET /auth/password/new' do
+  #   before do
+  #     mail = ActionMailer::Base.deliveries.last.to_s
+  #     @token = /(?<=Token: )(.*)(?=<\/p>)/.match(mail)
+  #     @params = {
+  #       config: 'default',
+  #       redirect_url: @redirect_url,
+  #       reset_password_token: @token
+  #     }
+  #     get "/auth/password", @params
+  #     raw_qs = response.location.split('?')[1]
+  #     @qs = Rack::Utils.parse_nested_query(raw_qs)
+  #
+  #     @client_id = @qs['client_id']
+  #     @expiry = @qs['expiry']
+  #     @reset_password = @qs['reset_password']
+  #     @token = @qs['token']
+  #     @uid = @qs['uid']
+  #   end
+  #
+  #   it 'redirects to the given url and adds url params' do
+  #   end
+  #
+  #   it 'provides a valid token for a temporary session' do
+  #     # expect { get '/auth/password/edit' }.to_not raise_error
+  #   end
+  # end
 end
