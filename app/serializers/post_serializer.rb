@@ -4,6 +4,6 @@ class PostSerializer < ActiveModel::Serializer
   belongs_to :user
 
   def user
-    object.user.uid
+    object.user.email
   end
 end
