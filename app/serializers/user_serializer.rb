@@ -4,7 +4,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :posts
 
   def email
-    object.uid
+    object.user.uid
   end
 
   def confirmed
